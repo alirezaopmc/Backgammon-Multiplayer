@@ -46,3 +46,5 @@ class Queue {
         return this.size == 0
     }
 }
+
+module.exports = Stack
