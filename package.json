@@ -1,0 +1,19 @@
+{
+  "name": "backgammon-multiplayer",
+  "version": "1.0.0",
+  "description": "An advanced board game known as backgammon just implemented in javascript. Powered up by socket.io, p5js and more...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SleepingJempa/Backgammon-Multiplayer.git"
+  },
+  "author": "ShayanBalaee, Alireza Jafartash",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SleepingJempa/Backgammon-Multiplayer/issues"
+  },
+  "homepage": "https://github.com/SleepingJempa/Backgammon-Multiplayer#readme"
+}
