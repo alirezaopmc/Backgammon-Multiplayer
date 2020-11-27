@@ -21,6 +21,7 @@ class Queue {
             this.head = this.tail = newNode
         } else {
             newNode.setNext(this.head)
+            this.head.setPrev(newNode)
             this.head = newNode
         }
 
