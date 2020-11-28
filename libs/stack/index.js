@@ -1,6 +1,6 @@
 const Node = require('../node')
 
-class Queue {
+class Stack {
     constructor() {
         this.top = null
         this.size = 0
