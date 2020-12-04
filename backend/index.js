@@ -1,18 +1,24 @@
-var express = require('express')
-var socket = require('socket.io')
+const express = require('express')
+const socket = require('socket.io')
+const MatchMaker = require('./core/match-maker')
 
-var app = express()
+const app = express()
 
 
-var server = app.listen(3000, () => {
+const server = app.listen(3000, () => {
     console.log('Listening on port 3000')
 })
 
 app.use(express.static('public'))
 
 // Socket setup
-var io = socket(server)
+const io = socket(server)
 
 io.on('connection', socket => {
     console.log('Made socket connection', socket.id)
 })
+
+
+
+// MatchMaker setup
+const matcher = new MatchMaker(socket, io)

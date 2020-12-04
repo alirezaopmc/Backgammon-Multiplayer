@@ -49,9 +49,8 @@ Models are object interfaces that will be passed by the emit function.
     * `No possible moves available while the no marble out`
     * `No possible positions available while at least one marble is out`
 
-# Socket Interface (emit and model name]
-1. Connection `(connection)`
-
-2. New Game `(new-game)`
-
-3. In Game `(game-action)`
+# Socket Interface [emit name]
+1. `connection`
+2. `new-game`
+4. `player-join`
+5. `game-action`
