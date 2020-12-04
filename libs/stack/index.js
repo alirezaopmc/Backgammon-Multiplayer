@@ -33,9 +33,12 @@ class Stack {
         } else {
             removedNode = this.top
             this.top.getPrev().setNext(null)
+            this.top = this.top.getPrev()
             this.size--
             return removedNode
         }
+
+        return undefined
     }
 
     length() {

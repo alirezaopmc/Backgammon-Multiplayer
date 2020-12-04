@@ -1,10 +1,11 @@
 class Node {
     /**
      * 
-     * @param {*} value 
+     * @param {*} data 
      */
-    constructor(value) {
-        this.properties = {value: value}
+    constructor(data) {
+        this.data = data
+        this.props = {}
         this.prev = null
         this.next = null
     }
@@ -12,35 +13,32 @@ class Node {
     /**
      * @return {*}
      */
-    getValue() {
-        return this.properties.value
+    get() {
+        return this.data
     }
 
     /**
      * 
-     * @param {*} value 
+     * @param {*} data 
      */
-    setValue(value) {
-        this.properties.value = value
+    set(data) {
+        this.data = data
     }
 
     /**
      * 
-     * @param {String} key 
-     * @param {*} value 
-     * @return {*}
+     * @param {String} key
      */
-    getData(key) {
+    getProp(key) {
         return this.properties[key]
     }
 
     /**
      * 
      * @param {String} key 
-     * @param {*} value 
      */
-    setData(key, value) {
-        this.properties[key] = value
+    setProp(key, value) {
+        this.props[key] = value
     }
 
     /**
