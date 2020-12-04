@@ -1,6 +1,18 @@
+/**
+ * Node class
+ * 
+ * data: stores the main property of the node
+ * props: stores the other properties of the node including functions
+ * prev: pointer to the previous node
+ * next: pointer to the next node
+ * 
+ * !! Functions Properties !!
+ * Very Important: All functions must use the props attribute of this node
+ */
+
 class Node {
     /**
-     * 
+     * Create a node with specified data
      * @param {*} data 
      */
     constructor(data) {
@@ -11,6 +23,7 @@ class Node {
     }
 
     /**
+     * Return the main property of the node (data)
      * @return {*}
      */
     get() {
@@ -18,7 +31,7 @@ class Node {
     }
 
     /**
-     * 
+     * Change the main property of the node (data)
      * @param {*} data 
      */
     set(data) {
@@ -26,7 +39,7 @@ class Node {
     }
 
     /**
-     * 
+     * Get a specific property of the node by name (including functions)
      * @param {String} key
      */
     getProp(key) {
@@ -34,7 +47,7 @@ class Node {
     }
 
     /**
-     * 
+     * Change a specific property of the node by name [key] (including functions)
      * @param {String} key 
      */
     setProp(key, value) {
@@ -42,6 +55,7 @@ class Node {
     }
 
     /**
+     * Return the previous node of the current node
      * @return {Node}
      */
     getPrev() {
@@ -49,7 +63,7 @@ class Node {
     }
 
     /**
-     * 
+     * Change the previous node of the current node
      * @param {Node} prev 
      */
     setPrev(prev) {
@@ -57,6 +71,7 @@ class Node {
     }
 
     /**
+     * Return the next node of the current node
      * @return {Node}
      */
     getNext() {
@@ -64,7 +79,7 @@ class Node {
     }
 
     /**
-     * 
+     * Change the next node of the current node
      * @param {Node} prev 
      */
     setNext(next) {
@@ -72,7 +87,7 @@ class Node {
     }
 
     /**
-     * 
+     * Copy all properties of an other node to this node
      * @param {Node} otherNode 
      */
     copy(otherNode) {
@@ -82,7 +97,7 @@ class Node {
     }
 
     /**
-     * 
+     * Run a function in props if it exists by name [key]
      * @param {Function} functionName 
      */
     do(functionName) {
