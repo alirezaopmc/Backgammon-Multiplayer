@@ -1,3 +1,5 @@
+
+
 let sections = [];
 let canvWidth = 620,
   canvHeight = 430;
@@ -90,6 +92,7 @@ function draw() {
   if(menu == 'game'){
     sceneUtil.drawGameScene(menu)
   }
+
 }
 
 function mouseClicked() {
