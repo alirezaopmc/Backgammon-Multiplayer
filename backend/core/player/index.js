@@ -1,10 +1,10 @@
 class Player {
 
-    constructor(id, socketId) {
+    constructor(id, nick, socket) {
         this.id = id
-        this.socketId = socketId
+        this.nick = nick
+        this.socket = socket
     }
-
 }
 
 module.exports = Player

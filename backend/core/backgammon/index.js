@@ -1,4 +1,4 @@
-
+const Stack = require('../../libs/stack')
 
 /**
  * This is the main Game class in the backend
@@ -13,6 +13,12 @@ class BackGammon {
 
         this.id = id
         this.wait()
+
+        this.init()
+    }
+
+    init() {
+        this.cols = new Stack()
     }
 
     join(guest) {
@@ -32,5 +38,5 @@ class BackGammon {
         return Math.floor(Math.random() * 6)
     }
 
-    
+
 }
