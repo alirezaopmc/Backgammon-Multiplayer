@@ -1,8 +1,15 @@
 const Node = require('../node')
 
+/**
+ * This is Queue class
+ * 
+ * head: pointer to last element of queue which will be removed after all nodes
+ * tail: pointer to first element of queue which will be removed by dequeue
+ * size: the number of nodes in queue
+ */
 class Queue {
     /**
-     * 
+     * Create an empty queue
      */
     constructor() {
         this.head = null
@@ -11,7 +18,7 @@ class Queue {
     }
 
     /**
-     * 
+     * Add a node to the end of the queue
      * @param {*} value 
      */
     enqueue(value) {
@@ -29,6 +36,7 @@ class Queue {
     }
 
     /**
+     * Remove the first node which was added first of all
      * @return {Object}
      */
     dequeue() {
@@ -51,6 +59,7 @@ class Queue {
     }
 
     /**
+     * Return the number node in the queue
      * @return {Number}
      */
     length() {
@@ -58,9 +67,12 @@ class Queue {
     }
 
     /**
+     * Return the trueness of queue emptiness
      * @return {Boolean}
      */
     empty() {
         return this.size == 0
     }
 }
+
+module.exports = Queue
