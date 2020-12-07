@@ -9,6 +9,10 @@
   <body>
     <canvas id="myCanvas"></canvas>
 
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io("http://localhost:3000")
+    </script>
     <script src="./libs/p5.min.js"></script>
     <script src="./js/classes/Piece.js"></script>
     <script src="./js/classes/Section.js"></script>

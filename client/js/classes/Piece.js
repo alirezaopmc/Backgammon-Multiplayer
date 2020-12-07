@@ -45,6 +45,14 @@ class Piece {
     this.color = color;
   }
 
+  clicked() {
+    //has bugs needs fixing
+    let d = dist(mouseX, mouseY, this.x, this.y);
+    if(d < this.diameter / 2) {
+      this.color = color(255,0,200)
+    }
+  }
+
   setY() {
     console.log(this.sectionIndex)
     if (this.section.pieces[this.section.pieces.length - 1] && this.sectionIndex < 13) {
@@ -60,7 +68,6 @@ class Piece {
   }
 
   render() {
-    this.setColor();
     // if (
     //   dist(this.x, this.y, mouseX, mouseY) < this.diameter / 2 &&
     //   mouseIsPressed

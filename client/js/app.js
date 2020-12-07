@@ -1,6 +1,5 @@
-
-
 let sections = [];
+let pieces = [];
 let canvWidth = 620,
   canvHeight = 430;
 
@@ -18,12 +17,16 @@ function setup() {
     sections.push(new Section(i * 30, 10, i));
     if (i == 1) {
       for (let j = 0; j <= 5; j++) {
-        sections[0].pieces.push(new Piece(sections[0], (j + 1) * 15 + 10));
+        let piece = new Piece(sections[0], (j + 1) * 15 + 10)
+        sections[0].pieces.push(piece);
+        pieces.push(piece);
       }
     }
     if (i == 5) {
       for (let j = 0; j <= 2; j++) {
-        sections[4].pieces.push(new Piece(sections[4], (j + 1) * 15 + 10));
+        let piece = new Piece(sections[4], (j + 1) * 15 + 10)
+        sections[4].pieces.push(piece);
+        pieces.push(piece);
       }
     }
   }
@@ -32,13 +35,17 @@ function setup() {
     sections.push(new Section(i * 30 + 40, 10, i));
     if (i == 7) {
       for (let j = 0; j <= 5; j++) {
-        sections[6].pieces.push(new Piece(sections[6], (j + 1) * 15 + 10));
+        let piece = new Piece(sections[6], (j + 1) * 15 + 10)
+        sections[6].pieces.push(piece);
+        pieces.push(piece)
       }
     }
 
     if (i == 12) {
       for (let j = 0; j <= 1; j++) {
-        sections[11].pieces.push(new Piece(sections[11], (j + 1) * 15 + 10));
+        let piece = new Piece(sections[11], (j + 1) * 15 + 10)
+        sections[11].pieces.push(piece);
+        pieces.push(piece)
       }
     }
   }
@@ -48,17 +55,17 @@ function setup() {
 
     if (i == 1) {
       for (let j = 0; j <= 5; j++) {
-        sections[12].pieces.push(
-          new Piece(sections[12], 340 - (j + 1) * 15 - 10)
-        );
+        let piece = new Piece(sections[12], 340 - (j + 1) * 15 - 10);
+        sections[12].pieces.push(piece);
+        pieces.push(piece);
       }
     }
 
     if (i == 6) {
       for (let j = 0; j <= 2; j++) {
-        sections[16].pieces.push(
-          new Piece(sections[16], 340 - (j + 1) * 15 - 10)
-        );
+        let piece = new Piece(sections[16], 340 - (j + 1) * 15 - 10)
+        sections[16].pieces.push(piece);
+        pieces.push(piece);
       }
     }
   }
@@ -68,20 +75,23 @@ function setup() {
 
     if (i == 7) {
       for (let j = 0; j <= 5; j++) {
-        sections[18].pieces.push(
-          new Piece(sections[18], 340 - (j + 1) * 15 - 10)
-        );
+        let piece = new Piece(sections[18], 340 - (j + 1) * 15 - 10)
+        sections[18].pieces.push(piece);
+        pieces.push(piece)
       }
     }
 
     if (i == 12) {
       for (let j = 0; j <= 1; j++) {
-        sections[23].pieces.push(
-          new Piece(sections[23], 340 - (j + 1) * 15 - 10)
-        );
+        let piece = new Piece(sections[23], 340 - (j + 1) * 15 - 10)
+        sections[23].pieces.push(piece);
+        pieces.push(piece)
       }
     }
   }
+
+  pieces.forEach(piece => piece.setColor())
+
 }
 
 function draw() {
@@ -107,6 +117,11 @@ function mouseClicked() {
         //exit electron process
       }
     }
+  }
+}
 
+function mousePressed() {
+  for (let i = 0; i < pieces.length; i++) {
+    pieces[i].clicked()
   }
 }

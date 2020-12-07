@@ -15,6 +15,4 @@ class Button {
         fill(color);
         text(this.text, textX, textY);
     }
-
-    
 }
