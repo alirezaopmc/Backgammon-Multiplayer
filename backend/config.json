@@ -1,0 +1,6 @@
+{
+    "maxRooms": 10,
+    "turnTime": 20,
+    "tokenSalt": "ABCDED0123456",
+    "tokenLength": 4
+}

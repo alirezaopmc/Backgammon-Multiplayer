@@ -48,13 +48,13 @@ class Queue {
             removedNode = this.tail
             this.tail = this.head = null
             this.size--
-            return removedNode.properties
+            return removedNode.data
         } else {
             removedNode = this.tail
             this.tail.getPrev().setNext(null)
             this.tail = this.tail.getPrev()
             this.size--
-            return removedNode.properties
+            return removedNode.data
         }
     }
 

@@ -7,22 +7,22 @@ class BackGammon {
     /**
      * 
      */
-    constructor(host, id) {
+    constructor(host, code) {
         this.host = host
         this.guest = undefined
-
-        this.id = id
-        this.wait()
-
+        this.code = code
+        
         this.init()
     }
-
+    
     init() {
         this.cols = new Stack()
+        this.wait()
     }
 
     join(guest) {
         this.guest = guest
+        this.guest.setGame(this);
         this.start()
     }
 
@@ -38,5 +38,9 @@ class BackGammon {
         return Math.floor(Math.random() * 6)
     }
 
-
+    dispose() {
+        if (this.host) this.host.disposeGame()
+    }
 }
+
+module.exports = BackGammon
