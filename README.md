@@ -26,8 +26,8 @@ An advanced board game known as backgammon just implemented in javascript. Power
 * `#move`
 ```js
 {
-    fr: Integer // From
-    to: Integer // To
+    i: Integer // From
+    j: Integer // To
 }
 ```
 
@@ -41,33 +41,24 @@ An advanced board game known as backgammon just implemented in javascript. Power
 
 # STC Emit Models
 
-* `#new-game-response`
+* Global Response Model: Game State Object
 ```js
 {
-    // If OKAY
-        // Type == HOST
-        type: "HOST"
-            // If a new game created successfully 
-                msg: String // Success message
-            // Else
-                err: String // Error message
+    status: "success",
+    type: "public, private",
+    state: "pending, beginning, in-game, end-game, game-over, no-game, no-connection",
+    cols: [ [0 or 1, ...] * 24 ],
+    host: "nick",
+    guest: "nick",
+    dice: {host, guest},
+    turn: 0 or 1,
+}
+```
 
-        // Type == RAND
-        type: "RAND"
-            // If a game was found
-            msg: String // Game found
-
-            // If no game found and a new game was created
-            msg: String // No game found but a new game was created
-
-            // If no game was found and can't create a game
-            err: String // Error message
-
-        // Type == PRIV
-        type: "PRIV"
-            
-
-    // If NOKAY (It happens when emit is in wrong format)
-    err: String // Failure message
+* Errors
+```js
+{
+    status: "error",
+    message: "The request does not meet the requirements"
 }
 ```

@@ -1,4 +1,5 @@
 const Stack = require('../../libs/stack')
+const Player = require('../player')
 
 /**
  * This is the main Game class in the backend
@@ -6,6 +7,8 @@ const Stack = require('../../libs/stack')
 class BackGammon {
     /**
      * 
+     * @param {Player} host 
+     * @param {*} code 
      */
     constructor(host, code) {
         this.host = host
@@ -13,6 +16,20 @@ class BackGammon {
         this.code = code
         
         this.init()
+    }
+
+    /**
+     * @return {Player}
+     */
+    getHost() {
+        return this.host
+    }
+
+    /**
+     * @return {Player}
+     */
+    getGuest() {
+        return this.guest
     }
     
     init() {
@@ -40,6 +57,30 @@ class BackGammon {
 
     dispose() {
         if (this.host) this.host.disposeGame()
+    }
+
+    /**
+     * 
+     * @param {*} i 
+     * @param {*} j 
+     * @return {Boolean}
+     */
+    move(i, j) {
+        if (this.validateMove(i, j)) {
+
+        } else {
+            // Not possible move !
+        }
+    }
+
+    /**
+     * 
+     * @param {*} i 
+     * @param {*} j 
+     * @return {Boolean}
+     */
+    validateMove(i, j) {
+        return true
     }
 }
 

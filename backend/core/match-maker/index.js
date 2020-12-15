@@ -4,6 +4,10 @@ const Player = require('../player')
 const faker = require('faker')
 const { v4: uuid } = require('uuid')
 const Token = require('../../libs/token')
+const LOG = require('../logger')
+
+// Comments 88 => TODO
+// Comments 66 => HOPE
 
 /**
  * This is the match maker class
@@ -36,6 +40,12 @@ class MatchMaker {
     }
 
     // Utils
+    /**
+     * Remove a player
+     * Dispose the game if available
+     * Delete player from players container
+     * @param {*} socket 
+     */
     removePlayer(socket) {
         let player = this.findPlayer(socket) 
         if(player) {
@@ -57,29 +67,45 @@ class MatchMaker {
     /**
      * 
      * @param {*} socket
-     * @return Player 
+     * @return {Player}
      */
     findPlayer(socket) {
         return socket.id in this.players ? this.players[socket.id] : undefined
+    }
+
+    /**
+     * Find game by id
+     * @param {String} gameId 
+     * @return {BackGammon}
+     */
+    findGame(code) {
+        return gameId in this.games ? this.games[gameId] : undefined
     }
 
     getRandomName() {
         return faker.name.findName()
     }
 
-    // Game utils
+    /**
+     * Game utils
+     */
+
+     /**
+      * 
+      * @param {*} socket 
+      * @param {*} req 
+      */
     createNewGame(socket, req) {
         let player = this.findPlayer(socket)
         let type = req.type
 
         if (player == undefined) {
-            // Player not found
+            // Player not found 88
         }
 
-        if (! this.validate(req)) {
-            // Wrong Request
-        }
-
+        /**
+         * Make a new game
+         */
         let hostMatch = () => {
             let hostedMatch = new BackGammon(socket.id)
             player.setGame(hostedMatch)
@@ -88,6 +114,9 @@ class MatchMaker {
             // Waiting for the other players to join
         }
 
+        /**
+         * Find a random game in queue or make a new one if it doesn't exist'
+         */
         let randomMatch = () => {
             if (this.queue.empty()) {
                 hostMatch()
@@ -99,15 +128,53 @@ class MatchMaker {
             }
         }
 
+        /**
+         * Join a game with code
+         */
         let privateMatch = () => {
-            let { gameId } = req
+            let { code } = req
             
+            if (this.findGame(code) == undefined) {
+                // No match 88
+            }
 
+            // Join the match 88 
+
+        }
+
+        if (type == "HOST") {
+            hostMatch()
+            LOG.newGameCreated(socket)
+        }
+
+        if (type == "RAND") {
+            LOG.gameQueueEmpty()
+            randomMatch()
+            LOG.newGameCreated(socket)
+        }
+
+        if (type == "PRIV") {
+            // Private Stuff 88
         }
     }
 
-    validate(req) {
-        
+    changeNick(socket, req) {
+        let { nick } = req
+
+        // The nick can not be changed during a game 66
+        this.findPlayer(socket).setNick(nick)
+    }
+
+    move(socket, req) {
+        let { i, j } = req
+        let game = this.findPlayer(socket).getGame()
+
+        if (! game.move(i, j)) {
+            socket.emit('wrong-move')
+        }
+
+        // Otherwise the game state will be updated and
+        // there is no need to emit
     }
 
 
@@ -133,6 +200,8 @@ class MatchMaker {
     PlayerRegisterEvents(socket) {
         this.PlayerDisconnectEvent(socket)
         this.NewGameEvent(socket)
+        this.ChangeNickEvent(socket)
+        this.MoveEvent(socket)
     }
 
     PlayerDisconnectEvent(socket) {
@@ -144,12 +213,21 @@ class MatchMaker {
 
     NewGameEvent(socket) {
         socket.on('new-game', (req) => {
-            console.log(`[${this.findPlayer(socket).nick}] has requested to make a new game.`)
             this.createNewGame(socket, req)
         })
     }
 
+    ChangeNickEvent(socket) {
+        socket.on('change-nick', (req) => {
+            this.changeNick(socket, req)
+        })
+    }
 
+    MoveEvent(socket) {
+        socket.on('move', (req) => {
+            this.move(socket, req)
+        })
+    }
 
     
 }

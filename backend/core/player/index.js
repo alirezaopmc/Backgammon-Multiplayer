@@ -1,3 +1,5 @@
+const BackGammon = require('../backgammon')
+
 class Player {
 
     constructor(nick, socket) {
@@ -11,8 +13,15 @@ class Player {
         this.game = game
     }
 
+    /**
+     * @return {BackGammon}
+     */
     getGame() {
         return this.game
+    }
+
+    setNick(nick) {
+        this.nick = nick
     }
 
     dispose() {
